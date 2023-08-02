@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(demo)
+project(ITA)
 
 include_directories(include)
 
-add_executable(demo demo.c)
+add_subdirectory(sort)
+
+
+add_subdirectory(test)
+
