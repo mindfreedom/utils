@@ -33,18 +33,18 @@ void parse_arg(int argc, char** argv)
 	int c, option_index;
 	struct option long_opt[] = {
 		{"debug", no_argument, 0, 1},
-		{"cnt", required_argument, 0, 2 }
+		{"number", required_argument, 0, 2 }
 	};
 
 	while (1) {
 		option_index = 0;
-		c = getopt_long(argc, argv, "dc:", long_opt, &option_index);
+		c = getopt_long(argc, argv, "dn:", long_opt, &option_index);
 		if (c == -1)
 			break;
 		switch (c) {
 		case 'd':
 		case 1: debug = 1; break;
-		case 'c':
+		case 'n':
 		case 2: cnt = atoi(optarg); break;
 		default:
 			help(argv[0]);
@@ -107,8 +107,6 @@ int main(int argc, char **argv)
 	for (i = 0; i < cnt; i++) 
 		data[i] = rand() % cnt;
 	
-	if (debug)
-		disp(data, cnt);
 	
 	data1 = (int*)calloc(cnt, sizeof(int));
 	if (!data1) {
@@ -117,8 +115,12 @@ int main(int argc, char **argv)
 	}
 
 	printf("各种排序算法对%d个随机整数进行排序所花费的时间如下（1秒 == 1000000微秒）\n", cnt);
-	
-	
+
+	if (debug) {
+		printf("原始数据为：\n");
+		disp(data, cnt);
+	}
+
 	printf("插入排序耗时：\t");
 	memcpy(data1, data, cnt * sizeof(int));
 	gettimeofday(&tv1, NULL);
