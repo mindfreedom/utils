@@ -1,5 +1,6 @@
 //
 // Created by Administrator on 2023/10/12.
+// Refer to https://baike.baidu.com/item/MD5/212708
 //
 
 /*
